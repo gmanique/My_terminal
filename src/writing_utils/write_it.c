@@ -6,7 +6,7 @@
 /*   By: gmanique <gmanique@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 23:02:55 by gmanique          #+#    #+#             */
-/*   Updated: 2025/09/12 10:36:02 by gmanique         ###   ########.fr       */
+/*   Updated: 2025/09/13 22:29:33 by gmanique         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	put_white_pixel(t_all *all, t_point coords, t_point i_and_j, int siz
 		cpty = 0;
 		while(cpty < size)
 		{
-			if (coords.x + (i_and_j.x * size) + cptx >= WINDOW_WIDTH || coords.y + (i_and_j.y * size) + cpty >= WINDOW_HEIGHT)
+			if (coords.x + (i_and_j.x * size) + cptx >= WINDOW_WIDTH || coords.y + (i_and_j.y * size) + cpty >= WINDOW_HEIGHT
+				|| coords.x + (i_and_j.x * size) + cptx < 0 || coords.y + (i_and_j.y * size) + cpty < 0)
 				return ;
 			draw_pixel(all->screen, coords.x + (i_and_j.x * size) + cptx, coords.y + (i_and_j.y * size) + cpty,
 									0xffffff);
@@ -76,15 +77,13 @@ void	ft_put_mlx_str(t_all *all, char *s, t_point coords, int size)
 		{
 			coords.y += size * 7;
 			coords.x = save_x;
+			// coords.x += 4.5*size;
 			decal = i;
 		}
 		else
 		{
-			// if (s[i] >= 'a' && s[i] <= 'z')
-			// 	write_char(all, all->digits[(int)s[i]], make_point(coords.x + (size * i) + size + 2, coords.y + 5*(float)(size/2)), size*0.9);
-			// else
 			if (decal)
-				write_char(all, all->digits[(int)s[i]], make_point(coords.x + (size * (i - decal)) + size - 40, coords.y), size);
+				write_char(all, all->digits[(int)s[i]], make_point(coords.x + (size * (i - decal)) + size /*- 40*/, coords.y), size);
 			else
 				write_char(all, all->digits[(int)s[i]], make_point(coords.x + (size * i) + size, coords.y), size);
 			coords.x += 4.5*size;

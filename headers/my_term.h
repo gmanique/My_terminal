@@ -6,7 +6,7 @@
 /*   By: gmanique <gmanique@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 02:32:50 by gmanique          #+#    #+#             */
-/*   Updated: 2025/09/12 02:34:54 by gmanique         ###   ########.fr       */
+/*   Updated: 2025/09/13 21:25:13 by gmanique         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@
 # include <sys/wait.h>
 
 # include "../minilibx-linux/mlx.h"
+# include "shell.h"
 # include "structures.h"
 # include "fonctions.h"
 # include "libft.h"
 
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 900
+# define NOT_FOUND -404
+# define EXPORT_SIZE 5000
 
 #endif

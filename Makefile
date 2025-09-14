@@ -11,8 +11,16 @@ INCLUDES = -Iheaders -Ilibft
 
 BASE_SRC = 	main.c							\
 			t_point.c						\
+			list.c						\
 			writing_utils/init_chars.c		\
 			writing_utils/write_it.c		\
+			shell/handle_input.c			\
+			shell/init_shell.c				\
+			shell/brackets.c				\
+			shell/help.c					\
+			shell/exec.c					\
+			shell/free.c					\
+			shell/builtins.c			
 
 SRC = $(addprefix $(SRC_DIR)/, $(BASE_SRC))
 
@@ -35,7 +43,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@echo "\n\033[0;32mCreating obj directory..\e[m"
-	@mkdir -p $(OBJ_DIR)/writing_utils
+	@mkdir -p $(OBJ_DIR)/writing_utils $(OBJ_DIR)/shell
 
 
 CFLAGS = -Wall -Wextra -Werror -g3
@@ -46,7 +54,7 @@ $(NAME) : $(OBJ)
 	@echo "\033[0;32mCompilating libft..\e[m"
 	@make -s -C libft
 	@echo "\033[0;32mCompilating My_term..\e[m"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) $(INCLUDES) -o $(NAME) -lm
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) $(INCLUDES) -o $(NAME) -lm -lreadline
 	@echo "\033[1;32mMy_term successfully compilated !\n\e[m"
 
 clean :
